@@ -265,25 +265,40 @@ def multiprocessing_func(outfile):
     while True:
         move = box.special_fields.get(
                 box.particle.loc, moves[box.particle.direction])
+
         try:
             move()
         except OutOfBoundsError:
             sys.exit("Particle out of bounds")
         except ExplosionError:
+            return "X"
         except DetectorAError:
+            return f"{int(box.is_live_bomb)}A"
         except DetectorBError:
+            return f"{int(box.is_live_bomb)}B"
+        finally:
+            time.sleep(args.speed) 
+            if args.save_to_file:
+                with open(outfile, "w") as fs:
+                    fs.write(str(box))
 
 
 
 if __name__ == "__main__":
+
     f1 = outfolder / "tmp1.txt"
     f2 = outfolder / "tmp2.txt"
 
-    fnames = [f2 if i%2 else f1 for i in range(20)]
+    fnames = [outfolder / f"tmp{i}.txt" for i in range(args.num_procs) for n in range(args.num_runs)] 
 
-    pool = multiprocessing.Pool(2)#multiprocessing.cpu_count())
-    pool.map(multiprocessing_func, fnames)
-    pool.close()
+    with multiprocessing.Pool(args.num_procs) as pool:#multiprocessing.cpu_count())
+        res = pool.map(multiprocessing_func, fnames, chunksize=args.num_runs)
+
+    print(f"Detected in A (dud): {(res.count('0A'))/len(res)*100} %")
+    print(f"Detected in A (live): {(res.count('1A'))/len(res)*100} %")
+    print(f"Detected in B: {res.count('1B')/len(res)*100} %")
+    print(f"Bomb exploded: {res.count('X')/len(res)*100} %")
+    print(f"Num experiments: {len(res)}")
 
 
 def main():
