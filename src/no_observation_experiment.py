@@ -6,6 +6,7 @@ from typing import Tuple
 from collections import namedtuple
 from dataclasses import dataclass
 import multiprocessing
+from argparse import ArgumentParser
 
 import numpy as np
 from sympy import sqrt, I, simplify
@@ -21,7 +22,46 @@ N = 1/sqrt(2)
 
 NUM_EXPERIMENTS = int(1e5)
 
-SPEED = 0.5
+parser = ArgumentParser()
+
+parser = ArgumentParser(
+        description="", prog=f"python {__name__}")
+parser.add_argument(
+        "-n", "--num-procs", 
+        default=1,
+        type=int, 
+        help="number of processes [optional]"
+        )
+parser.add_argument(
+        "-N", "--num_runs", 
+        default=1,
+        type=int, 
+        help="number of runs (per process) [required]"
+        )
+parser.add_argument(
+        "-p", "--print-init", 
+        action="store_true",
+        help="prints the initial setup of the experiment and exits"
+        )
+parser.add_argument(
+        "--save-to-file", 
+        action="store_true",
+        help="saves the results to file"
+        )
+parser.add_argument(
+        "-s", "--speed", 
+        default=0.5,
+        type=float, 
+        help="the time it takes for the particle to move one unit"
+        )
+
+args = parser.parse_args()
+if args.print_init:
+    box = Box()
+    box.particle = Particle(loc=(box.height - 2, 0), direction=1)
+    print(box)
+    sys.exit()
+
 
 
 def mirror(state):
