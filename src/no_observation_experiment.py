@@ -103,14 +103,17 @@ class Particle:
 
 
 class Box:
+    height = 14
+    box_width = 32
+    # board_height = 10
+    # board_width = 20
+
     def __init__(self):
         self.particle: Particle = None
         self.is_live_bomb = False
 
-        self.height = 14
-        self.box_width = 32
-        self.board_height = 10
-        self.board_width = 20
+        self.height = Box.height
+        self.box_width = Box.box_width
 
         self.bomb_loc = (self.height - 2, 10)
         self.mirror1_loc = (self.height - 2, self.box_width - 2)
@@ -131,18 +134,7 @@ class Box:
                 }
 
  
-        self.board = []
-        self.board.append(list(f"{' '*(self.box_width - 2)}B  "))
-        self.board.append(list(f"{' '*(self.box_width - 2)}¦  "))
-
-        self.board.append(list(f"    /{'-'*(self.box_width - 7)}+-A"))
-
-        for _ in range(self.height - 5):
-            self.board.append(list(f"    ¦{' '*(self.box_width - 7)}¦  "))
-
-        self.board.append(list(f"----+{'-'*(self.box_width - 7)}/  "))
-        self.board.append(list(f"{' '*self.box_width}"))
-
+        self.board = self.init_board(self.box_width, self.height)
 
     def __str__(self):
         b = deepcopy(self.board)
@@ -152,6 +144,22 @@ class Box:
         for row in b:
             rows.append("".join(row))
         return "\n".join(rows)
+
+
+    def init_board(self, box_width, height):
+        board = []
+        board.append(list(f"{' '*(box_width - 2)}B  "))
+        board.append(list(f"{' '*(box_width - 2)}¦  "))
+
+        board.append(list(f"    /{'-'*(box_width - 7)}+-A"))
+
+        for _ in range(height - 5):
+            board.append(list(f"    ¦{' '*(box_width - 7)}¦  "))
+
+        board.append(list(f"----+{'-'*(box_width - 7)}/  "))
+        board.append(list(f"{' '*box_width}"))
+
+        return board
 
 
     def insert_bomb(self, board):
@@ -208,8 +216,7 @@ class Box:
     def explode(self):
         b = deepcopy(self.board)
         b = self.insert_explosion(b)
-        for row in b:
-            print("".join(row))
+        self.board = b
 
         raise ExplosionError
 
