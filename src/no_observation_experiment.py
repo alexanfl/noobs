@@ -1,3 +1,4 @@
+import sys
 import math
 import random
 from copy import deepcopy
@@ -12,6 +13,9 @@ import numpy as np
 from sympy import sqrt, I, simplify
 from pathlib import Path
 
+# Where to dump the current board
+outfolder = Path("out")
+outfolder.parent.mkdir(exist_ok=True, parents=True) 
 
 # Representation of path a (lower) and b (upper)
 a = np.array([1, 0])
@@ -260,9 +264,7 @@ class Results:
                 f"Bomb exploded: {self.explosions/self.num_experiments}"
                 )
 
-outfolder = Path("out")
-outfolder.parent.mkdir(exist_ok=True, parents=True) 
-
+        
 def multiprocessing_func(outfile):
     box = Box()
     box.particle = Particle(loc=(box.height - 2, 0), direction=1)
