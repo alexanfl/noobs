@@ -1,0 +1,27 @@
+.box {
+  height: 100px;
+  width: 100px;
+  background: black;
+}
+
+.ball {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  background: black;
+}
+
+.flex-center {
+  display: flex; 
+  justify-content: center;
+}
+
+.flex-center>* {
+  margin: 1em;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
