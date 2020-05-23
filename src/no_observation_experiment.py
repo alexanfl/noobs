@@ -263,9 +263,6 @@ def multiprocessing_func(outfile):
 
     moves = [box.move_up, box.move_right]
     while True:
-        # print(box)
-        with open(outfile, "w") as fs:
-            fs.write(str(box))
         move = box.special_fields.get(
                 box.particle.loc, moves[box.particle.direction])
         try:
@@ -273,23 +270,9 @@ def multiprocessing_func(outfile):
         except OutOfBoundsError:
             sys.exit("Particle out of bounds")
         except ExplosionError:
-            # print("BOOM!")
-            # results.explosions += 1
-            break
         except DetectorAError:
-            # print(f"Particle detected in A")
-            # results.detected_in_A += 1
-            break
         except DetectorBError:
-            # print(f"Particle detected in B")
-            # results.detected_in_B += 1
-            break
 
-        # print("Live bomb:", bool(box.is_live_bomb))
-        time.sleep(SPEED) 
-
-    # results = Results(1)
-    # print(results)
 
 
 if __name__ == "__main__":
