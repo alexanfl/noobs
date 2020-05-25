@@ -5,80 +5,54 @@
 ## Superposition Crashcourse
 
 
-  A *wave function* `$\psi$` describes the quantum mechanical states
-  of the system
+A *wave function* `$\psi$` describes the quantum mechanical states
+of the system
 
 
-  In a simple quantum system where there are only two possible states,
-  `$|0\rangle$` and `$|1\rangle$`, the wave function describes it as follows
-  `$$
-  |\psi\rangle \rightarrow
-  \begin{cases}
-  |0\rangle\\
-  |1\rangle\end{cases}
-  $$`
+In a simple quantum system where there are only two possible states,
+`$|0\rangle$` and `$|1\rangle$`, the wave function describes it as follows
+`$$
+|\psi\rangle \rightarrow
+\begin{cases}
+|0\rangle\\
+|1\rangle\end{cases}
+$$`
 
 
-
-<section data-auto-animate>
-  <div data-id="eq" style="height: 340px;">
-    <div data-id="1" style="background: black; position: absolute; top: 150px; left: 16%; width: 60px; height: 60px;"></div>
-    <div data-id="2" style="background: black; position: absolute; top: 150px; left: 36%; width: 60px; height: 60px;"></div>
-    <div data-id="3" style="background: black; position: absolute; top: 150px; left: 56%; width: 60px; height: 60px;"></div>
-    <div data-id="4" style="background: black; position: absolute; top: 150px; left: 76%; width: 60px; height: 60px;"></div>
-  </div>
-</section>
-<section data-auto-animate>
-  <p data-id="eq" style="line-height: 3em;">
-  $$
-  |\psi\rangle \rightarrow
-  \begin{cases}
-  |0\rangle\\
-  |1\rangle\end{cases}
-  $$
-  </p>
-  <div data-id="1" style="text-align: center; height: 1px;"></div>
-  <div data-id="2" style="text-align: center; height: 1px;"></div>
-  <div data-id="3" style="text-align: center; height: 1px;"></div>
-  <div data-id="4" style="text-align: center; height: 1px;"></div>
-</section>
+The innerproduct between two wave functions
+`$$\langle\phi|\psi\rangle$$`
+measures the overlap between the corresponding physical states
 
 
-
-  The innerproduct between two wave functions
-  `$$\langle\phi|\psi\rangle$$`
-  measures the overlap between the corresponding physical states
-
-
-  The states are orthogonal
-  `$$
-  \langle 0|0\rangle = 1\\
-  \langle 1|1\rangle = 1\\
-  \langle 0|1\rangle = 0\\
-  \langle 1|0\rangle = 0
-  $$`
+The states are orthogonal
+`$$
+\langle 0|0\rangle = 1\\
+\langle 1|1\rangle = 1\\
+\langle 0|1\rangle = 0\\
+\langle 1|0\rangle = 0
+$$`
 
 
-  These states are basis vectors (or functions), spanning
-  a Hilbert space
+These states are basis vectors (or functions), spanning
+a Hilbert space
 
 
-  As vectors, they can be represented as the standard basis in 2D
-  `$$
-  \psi \rightarrow
-  \begin{cases}
-  e_0 = (1,0)\\
-  e_1 = (0,1)
-  \end{cases}
-  $$`
+As vectors, they can be represented as the standard basis in 2D
+`$$
+\psi \rightarrow
+\begin{cases}
+e_0 = (1,0)\\
+e_1 = (0,1)
+\end{cases}
+$$`
 
 
-  Assuming there is a 50 percent probability of either state,
-  the normalized wave function is
-  `$$
-  |\psi\rangle = \frac{1}{\sqrt{2}}\left(|0\rangle + |1\rangle\right)\\
-  \langle\psi|\psi\rangle = 1
-  $$`
+Assuming there is a 50 percent probability of either state,
+the normalized wave function is
+`$$
+|\psi\rangle = \frac{1}{\sqrt{2}}\left(|0\rangle + |1\rangle\right)\\
+\langle\psi|\psi\rangle = 1
+$$`
 
 
 
